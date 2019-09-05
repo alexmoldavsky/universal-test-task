@@ -1,5 +1,6 @@
-{ 
-  "id": 0,
-  "title": "test"
+{posts: [{ 
+           "id": 0,
+           "title": "test"
   
+         }]
 }
