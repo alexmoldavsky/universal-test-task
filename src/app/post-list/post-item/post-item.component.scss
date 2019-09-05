@@ -1,0 +1,25 @@
+.post-item {
+    &__edit {
+        display: none;
+    }
+
+    &:hover {
+        .post-item__edit {
+            display: inherit;
+        }
+    }
+
+    &__img {
+        max-width: 200px;
+    }
+
+    .btn {
+        margin-right: 5px;
+    }
+}
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    <label for="name">Title</label>
+                    <input type="text" id="title" class="form-control" #titleInput>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    <label for="name">Description</label>
+                    <input type="text" id="description" class="form-control" #descriptionInput>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    <label for="name">Image path</label>
+                    <input type="text" id="imgpath" class="form-control" #imgPathInput>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    <label for="name">Article</label>
+                    <textarea id="article" class="form-control" #articleInput></textarea>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-success" type="button" (click)="onConfirmClick()">{{ confirmAction }}</button>
+                    <button class="btn btn-primary" type="button" (click)="onClearClick()">Clear</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

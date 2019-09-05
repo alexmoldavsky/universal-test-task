@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-primary" type="button" [routerLink]="['/post', 'new', 'add']">Add new post...</button>
+        </div>
+    </div>
+    <hr>
+    <div class="col-xs-12">
+        <app-post-item *ngFor="let item of postList" [postItem]="item"></app-post-item>
+    </div>
+</div>
