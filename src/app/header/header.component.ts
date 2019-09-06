@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from './../login.service';
 
 
 @Component({
@@ -8,9 +9,36 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  userLogoPath: string = './../../assets/avaDef.png';
+  userName: string = 'Anonimus';
+  loginAction: string = 'Login';
+
+
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
+    this.loginService.authChanged.subscribe(
+      (logged: boolean) => {
+        if (logged) {
+          let user = this.loginService.getUser();
+          this.userName = user.name;
+          this.userLogoPath = user.photoUrl;
+          this.loginAction = 'Logout';
+        } else {
+          this.userName = 'Anonimus';
+          this.userLogoPath = './../../assets/avaDef.png';
+          this.loginAction = 'Login';
+        }
+      }
+    );
+  }
+
+  onLogin() {
+    if (!this.loginService.getIsLogined()) {
+      this.loginService.signInWithGoogle() 
+    } else   
+      this.loginService.signOut();
+      
   }
 
 }

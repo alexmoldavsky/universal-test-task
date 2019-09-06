@@ -53,7 +53,7 @@ export class PostAddEditComponent implements OnInit, AfterViewInit {
                                               this.articleInputRef.nativeElement.value,
                                               this.imgPathInputRef.nativeElement.value))
     } else {
-      this.postListService.addPost(new Post(3, this.titleInputRef.nativeElement.value, 
+      this.postListService.addPost(new Post(0, this.titleInputRef.nativeElement.value, 
                                               this.descriptionInputRef.nativeElement.value,
                                               this.articleInputRef.nativeElement.value,
                                               this.imgPathInputRef.nativeElement.value));

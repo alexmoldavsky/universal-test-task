@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { getAuthServiceConfigs } from './socialloginConfig';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +14,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostAddEditComponent } from './post-add-edit/post-add-edit.component';
 import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -21,15 +24,20 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     PostDetailComponent,
     PostAddEditComponent,
     HeaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    SocialLoginModule,
     FormsModule 
   ],
-  providers: [],
+  providers: [{
+    provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

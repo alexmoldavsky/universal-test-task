@@ -9,21 +9,24 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+ // private serverDomain = 'https://my-json-server.typicode.com/alexmoldavsky/universal-test-task';
+  private serverDomain = 'http://localhost:3000';
+  
+
   getPostList() {
-    return this.http.get<Post[]>('https://my-json-server.typicode.com/alexmoldavsky/universal-test-task/posts');
+    return this.http.get<Post[]>(this.serverDomain+'/posts');
   }
 
   addPost(post: Post) {
     delete post.id;
-    post.imgPath = window.btoa(post.imgPath);
-    return this.http.post<Post>('https://my-json-server.typicode.com/alexmoldavsky/universal-test-task/posts', post);
+    return this.http.post<Post>(this.serverDomain+'/posts', post);
   }
 
   updatePost(post: Post) {
-    return this.http.put<Post>(`https://my-json-server.typicode.com/alexmoldavsky/universal-test-task/posts/${post.id}`, post);
+    return this.http.put<Post>(this.serverDomain+`/posts/${post.id}`, post);
   }
 
   deletePost(postId: number) {
-    return this.http.delete<Post>(`https://my-json-server.typicode.com/alexmoldavsky/universal-test-task/posts/${postId}`);
+    return this.http.delete<Post>(this.serverDomain+`/posts/${postId}`);
   }
 }

@@ -3,6 +3,7 @@ import { EventEmitter } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,20 +28,13 @@ export class PostListService {
         this.api.getPostList()
             .subscribe(
                 response => {
-                    console.log(response);
                     this.postList = response;
                     this.postListChanged.emit(this.postList.slice());
                 }
             )
     }
-
-    savePostList() {
-
-    }
     
     getPostList(): Post[] {
-       
-
         return this.postList.slice();
     } 
 
@@ -53,8 +47,6 @@ export class PostListService {
         this.api.addPost(newPost)
             .subscribe(
                 response => {
-                    console.log(response);
-                    response.imgPath = window.atob(response.imgPath);
                     this.postList.push(response);
                     this.postListChanged.emit(this.postList.slice());
                 }
@@ -65,15 +57,29 @@ export class PostListService {
 
     changePost(changingPost: Post) {
 
-        let itemIndex: number = this.postList.findIndex((item: Post) => item.id === changingPost.id);
-        if (itemIndex >= 0) {
-            this.postList[itemIndex] = changingPost;
-            this.postListChanged.emit(this.postList.slice());
-        }
+        this.api.updatePost(changingPost)
+            .subscribe(
+                response => {
+                    console.log(response);
+                    let itemIndex: number = this.postList.findIndex((item: Post) => item.id === response.id);
+                    if (itemIndex >= 0) {
+                        this.postList[itemIndex] = response;
+                        this.postListChanged.emit(this.postList.slice());
+                    }
+                }
+            )
+
+        
     }
 
     deletePost(deletingPost: Post) {
-        this.postList = this.postList.filter((item: Post) => item.id !== deletingPost.id);
-        this.postListChanged.emit(this.postList.slice());
+        this.api.deletePost(deletingPost.id)
+            .subscribe(
+                () => {
+                    this.postList = this.postList.filter((item: Post) => item.id !== deletingPost.id);
+                    this.postListChanged.emit(this.postList.slice());
+                }
+            )
+        
     }
 }

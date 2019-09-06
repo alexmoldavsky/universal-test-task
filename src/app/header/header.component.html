@@ -10,8 +10,9 @@
                 <li routerLinkActive="active"><a [routerLink]="['/about']">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><img src="#" alt="" class="img-login img-circle"></li>
-                <li><a>Login</a></li>
+                <li><img [src]="userLogoPath" alt="" class="navbar-text img-login img-circle img-user-login"></li>
+                <li><span class="navbar-text">{{ userName }}</span></li>
+                <li><a class="login-link" (click)="onLogin()">{{ loginAction }}</a></li>
             </ul>
         </div>
     </div>
